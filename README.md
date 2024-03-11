@@ -19,5 +19,10 @@ using MORWiki, DataDeps
 datadep"steelProfile_n1357m7q6"
 ```
 
+## License
+
+The MORWiki package is licensed under [MIT](https://spdx.org/licenses/MIT.html), see `LICENSE`.
+The data sets available from [MOR Wiki] have their own licenses.
+
 [DataDeps.jl]: https://github.com/oxinabox/DataDeps.jl
 [MOR Wiki]: http://modelreduction.org/
