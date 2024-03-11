@@ -1,3 +1,5 @@
+# This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
+
 module MORWiki
 
 using DataDeps: DataDep, register
