@@ -1,6 +1,6 @@
-# This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
+# This file is part of MORwiki. License is MIT: https://spdx.org/licenses/MIT.html
 
-module MORWiki
+module MORwiki
 
 using DataDeps: DataDep, register
 using unzip_jll: unzip
@@ -40,4 +40,4 @@ function __init__()
     nothing
 end
 
-end # module MORWiki
+end # module MORwiki

@@ -1,4 +1,4 @@
-name = "MORWiki"
+name = "MORwiki"
 uuid = "0a23ce7c-1a84-4bdb-9995-3360bf4da96c"
 authors = ["Jonas Schulze <jschulze@mpi-magdeburg.mpg.de>"]
 version = "0.1.0"
