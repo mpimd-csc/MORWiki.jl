@@ -2,38 +2,65 @@
 
 module MORwiki
 
-using DataDeps: DataDep, register
+using LinearAlgebra: I
+using DataDeps: DataDep, register, @datadep_str
+using DocStringExtensions: TYPEDEF
+using MatrixMarket: mmread
+using UnPack: @unpack
 using unzip_jll: unzip
 
-# Naming scheme: register_PREFIX()
-# where PREFIX is the common benchmark ID prefix as specified on MOR Wiki.
-#
+"""
+    assemble(::Benchmark)::StateSpaceRepresentation
+
+Return assembled system matrices.
+"""
+function assemble end
+
+"""
+$(TYPEDEF)
+
+Lazy representation of a MOR Wiki benchmark.
+Check out `subtypes(MORwiki.Benchmark)` for all available benchmarks.
+
+See also: [`assemble`](@ref)
+"""
+abstract type Benchmark end
+
+"""
+$(TYPEDEF)
+
+Collection of system matrices in state-space representation.
+
+Available classes of systems:
+
+* [`FirstOrderSystem`](@ref): linear time-invariant first-order system (LTI-FOS)
+
+See also: [`assemble`](@ref)
+"""
+abstract type StateSpaceRepresentation end
+include("lti-fos.jl")
+
+function check_dimension(dim, DIM_HASH)
+    d = argmin(d -> abs(d - dim), d for (d, _) in DIM_HASH)
+    d == dim || throw(ArgumentError("Unsupported dimension $dim. Did you mean $d?"))
+    nothing
+end
+
+# Let PREFIX denote the common benchmark ID prefix as specified on MOR Wiki.
 # If part of a variant's suffix is common to all benchmark IDs, it may be omitted from PREFIX.
 # For example, use boneModel instead of boneModelB.
-
-function register_steelProfile()
-    function post_fetch_method(file)
-        run(`$(unzip()) -q $file`)
-        rm(file)
-    end
-
-    for (dim, hash) in [
-        (1357, "8e9d1bb6c382b134362e1df5614c5a165b2bac678b38933ca25ca137b54c43ad"),
-        (5177, "710942c89ae2beac051c97fa782d9bf529b01e4aa2c9ddf44b6ba1022103920f"),
-        (20_209, "cb6d3ab7d4a1e33779ad27665072115118f0e0603ab75ff5827ed551b3175619"),
-        (79_841, "298f0b985007414625fbecf83a8650ead3760e79a23a66e8119e6f906f0ce49e"),
-    ]
-        zipfile = "SteelProfile-dim1e$(round(Int, log10(dim)))-rail_$dim.zip"
-        datadep = DataDep(
-            "steelProfile_n$(dim)m7q6",
-            "A Semi-discretized Heat Transfer Problem for Optimal Cooling of Steel Profiles",
-            "https://csc.mpi-magdeburg.mpg.de/mpcsc/MORWIKI/Oberwolfach/$zipfile",
-            hash;
-            post_fetch_method,
-        )
-        register(datadep)
-    end
-end
+#
+# Create one file per benchmark, which defines the following methods:
+#
+# * Define function `register_PREFIX` which registers all DataDeps.jl dependencies,
+#   and add this function to `__init__`.
+# * Define `struct PREFIX <: Benchmark`, which lazily represents all variants of the benchmark.
+#   Use the capitalized PREFIX to conform to the typical Julia naming scheme!
+#   For example, use `struct BoneModel` instead of `struct boneModel`.
+# * Define method `assemble(::PREFIX)` which loads/assembles the actual system matrices.
+#   Return an appropriate sub-type of `StateSpaceRepresentation`.
+#
+include("oberwolfach/steelProfile.jl")
 
 function __init__()
     register_steelProfile()

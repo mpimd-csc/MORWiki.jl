@@ -1,7 +1,7 @@
 # MOR Wiki
 
 Download data sets from [MOR Wiki].
-If a certain data set has not been added, yet, please open an issue.
+If a certain benchmark has not been added, yet, please open an issue.
 
 ## Installation
 
@@ -11,7 +11,26 @@ pkg> add MORwiki
 
 ## Getting Started
 
-The data sets are available via [DataDeps.jl] using their [MOR Wiki] benchmark IDs.
+A ~~picture~~ code snippet is worth a thousand words:
+
+```
+using MORwiki: assemble, SteelProfile
+using UnPack
+
+@unpack E, A, B, C = assemble(SteelProfile(1357))
+```
+
+Should you get a benchmark's variant wrong,
+the error message should guide you along:
+
+```
+julia> SteelProfile(1000)
+ERROR: ArgumentError: Unsupported dimension 1000. Did you mean 1357?
+[...]
+```
+
+For more granular control,
+the data sets are available via [DataDeps.jl] using their [MOR Wiki] benchmark IDs:
 
 ```julia
 using MORwiki, DataDeps
