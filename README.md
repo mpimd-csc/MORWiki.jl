@@ -13,7 +13,7 @@ pkg> add MORwiki
 
 A ~~picture~~ code snippet is worth a thousand words:
 
-```
+```julia
 using MORwiki: assemble, SteelProfile
 using UnPack
 
