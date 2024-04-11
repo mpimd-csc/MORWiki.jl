@@ -1,7 +1,7 @@
 name = "MORwiki"
 uuid = "0a23ce7c-1a84-4bdb-9995-3360bf4da96c"
 authors = ["Jonas Schulze <jschulze@mpi-magdeburg.mpg.de>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 DataDeps = "124859b0-ceae-595e-8997-d05f6a7a8dfe"

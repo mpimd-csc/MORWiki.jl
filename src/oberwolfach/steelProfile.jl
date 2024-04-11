@@ -1,6 +1,7 @@
 # This file is part of MORwiki. License is MIT: https://spdx.org/licenses/MIT.html
 
 const DIM_HASH_steelProfile = [
+    (371, "ae4da7dba1b218f5f6f74c4e9194aa759ff8140f5a5d74247ee59e2447fd6093"),
     (1357, "8e9d1bb6c382b134362e1df5614c5a165b2bac678b38933ca25ca137b54c43ad"),
     (5177, "710942c89ae2beac051c97fa782d9bf529b01e4aa2c9ddf44b6ba1022103920f"),
     (20_209, "cb6d3ab7d4a1e33779ad27665072115118f0e0603ab75ff5827ed551b3175619"),
