@@ -5,8 +5,9 @@ If a certain benchmark has not been added, yet, please open an issue.
 
 ## Installation
 
-```
-pkg> add MORwiki
+```julia
+import Pkg
+Pkg.add("MORwiki")
 ```
 
 ## Getting Started
