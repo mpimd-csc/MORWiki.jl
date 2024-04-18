@@ -62,6 +62,13 @@ If a certain benchmark has not been added, yet, please open an issue.
   [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
   [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
 
+## Acknowledgments
+
+I would like to thank the code reviewers:
+
+- Ashwin Nayak (https://github.com/ashwin-nayak)
+- Jens Saak (https://github.com/drittelhacker)
+
 ## License
 
 The MORwiki package is licensed under [MIT](https://spdx.org/licenses/MIT.html), see `LICENSE`.
