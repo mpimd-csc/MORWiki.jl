@@ -53,6 +53,15 @@ datadep"steelProfile_n1357m7q6"
   `~/.julia/scratchspaces/124859b0-ceae-595e-8997-d05f6a7a8dfe/datadeps/`.
   Please refer to [DataDeps.jl]'s end-user documentation for further information.
 
+## Available Data Sets
+
+The following list associates the subtypes of `MORwiki.Benchmark` to their [MOR Wiki] entries.
+If a certain benchmark has not been added, yet, please open an issue.
+
+- `SteelProfile`:
+  [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
+  [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
+
 ## License
 
 The MORwiki package is licensed under [MIT](https://spdx.org/licenses/MIT.html), see `LICENSE`.
