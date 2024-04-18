@@ -53,6 +53,16 @@ datadep"steelProfile_n1357m7q6"
   `~/.julia/scratchspaces/124859b0-ceae-595e-8997-d05f6a7a8dfe/datadeps/`.
   Please refer to [DataDeps.jl]'s end-user documentation for further information.
 
+> [!WARNING]
+> The following releases have been data-breaking:
+> *none*
+>
+> Should you upgrade MORwiki.jl to (or skipping) one of the versions listed above,
+> consult the `CHANGELOG` to see which data sets must be deleted and re-downloaded.
+> Be assured that such changes will always be marked as a breaking release
+> according to the [Pkg.jl documentation](https://pkgdocs.julialang.org/v1.6/compatibility/#compat-pre-1.0).
+> Of course, not every API-breaking release is also data-breaking.
+
 ## Available Data Sets
 
 The following list associates the subtypes of `MORwiki.Benchmark` to their [MOR Wiki] entries.
