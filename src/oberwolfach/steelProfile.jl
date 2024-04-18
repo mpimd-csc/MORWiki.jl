@@ -36,7 +36,10 @@ end
 
 $(DOC_steelProfile)
 
-Allowed dimensions: 1357, 5177, 20209, 79841
+Allowed dimensions: 371, 1357, 5177, 20209, 79841
+
+!!! compat "MORwiki 0.1.2"
+    Dimension 371 requires MORwiki version 0.1.2 or later.
 """
 struct SteelProfile <: Benchmark
     dim::Int
