@@ -3,6 +3,7 @@
 module MORwiki
 
 using LinearAlgebra: I
+using Compat: argmin
 using DataDeps: DataDep, register, @datadep_str
 using DocStringExtensions: TYPEDEF
 using MatrixMarket: mmread

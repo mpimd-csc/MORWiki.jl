@@ -1,0 +1,64 @@
+default:
+  interruptible: true
+
+# Prevent duplicate pipelines
+# https://docs.gitlab.com/ee/ci/yaml/workflow.html#switch-between-branch-pipelines-and-merge-request-pipelines
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
+test:
+  parallel:
+    matrix:
+      - IMAGE:
+          - julia:1.6
+          - julia:1
+  image: $IMAGE
+  variables:
+    DATADEPS_ALWAYS_ACCEPT: 1
+  script:
+    - julia -e 'using InteractiveUtils; versioninfo()'
+    - |
+      julia --project=@. -e '
+      using Pkg
+      Pkg.build()
+      Pkg.test(coverage=true)
+      '
+  artifacts:
+    when: always
+    name: artifact-$IMAGE
+    paths:
+      - "**/*.cov"
+
+coverage:
+  image: julia:1.6
+  needs:
+    - test
+  coverage: /Test coverage (\d+\.\d+%)/
+  script:
+    - |
+      julia --project=@. -e '
+      using Pkg
+      Pkg.add("LocalCoverage")
+      using LocalCoverage
+      c = generate_coverage(; run_test=false)
+      # Print overview
+      using Printf
+      @printf "Test coverage %.2f%%\n" c.coverage_percentage
+      # Generate detailed report for GitLab
+      using LocalCoverage: COVDIR, LCOVINFO
+      cobertura = joinpath(COVDIR, "cobertura.xml")
+      lcov = joinpath(COVDIR, LCOVINFO)
+      write_lcov_to_xml(cobertura, lcov)
+      '
+  artifacts:
+    paths:
+      - coverage/lcov.info
+      - coverage/cobertura.xml
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura.xml
