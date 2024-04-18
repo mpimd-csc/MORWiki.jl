@@ -13,6 +13,7 @@ using LinearAlgebra, SparseArrays, Test, UnPack
 
     fos = assemble(rail)
     @test fos isa MORwiki.FirstOrderSystem
+    @test startswith(string(fos), r"^FirstOrderSystem:\n  [EA]: ")
 
     @unpack E, A, B, C, D = fos
     @test E isa SparseMatrixCSC
