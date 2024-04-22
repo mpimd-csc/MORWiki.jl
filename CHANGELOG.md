@@ -1,3 +1,5 @@
 # v0.2.0
 
 - Breaking: Rename package back to MORWiki.jl
+- Breaking: Drop support for MatrixMarket.jl version 0.4
+- Unpack data sets in-memory instead of unpacking to a `tempdir()`

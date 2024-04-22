@@ -45,21 +45,19 @@ function assemble(rail::FenicsRail)
     dir = @datadep_str dep
     zipfile = joinpath(dir, "fenics_rail_$dim.zip")
 
+    archive = zip_open_filereader(zipfile)
+    zip_mmread(file) = zip_openentry(mmread, archive, file)
     local E, A, B
-    mktempdir() do dir
-        run(Cmd(`$(unzip()) -q $zipfile`; dir))
-
-        @sync begin
-            @spawn E = mmread(joinpath(dir, "ODE_$(dim)_M.mtx"))
-            @spawn begin
-                M = @spawn mmread(joinpath(dir, "ODE_$(dim)_M_GAMMA.mtx"))
-                A = mmread(joinpath(dir, "ODE_$(dim)_S.mtx"))
-                A = -(A + fetch(M))
-            end
-            @spawn begin
-                B = mmread(joinpath(dir, "ODE_$(dim)_B.mtx"))
-                B = sparse(B)
-            end
+    @sync begin
+        @spawn E = zip_mmread("ODE_$(dim)_M.mtx")
+        @spawn begin
+            M = @spawn zip_mmread("ODE_$(dim)_M_GAMMA.mtx")
+            A = zip_mmread("ODE_$(dim)_S.mtx")
+            A = -(A + fetch(M))
+        end
+        @spawn begin
+            B = zip_mmread("ODE_$(dim)_B.mtx")
+            B = sparse(B)
         end
     end
 

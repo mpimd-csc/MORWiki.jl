@@ -10,6 +10,7 @@ using DocStringExtensions: TYPEDEF
 using MatrixMarket: mmread
 using SparseArrays: sparse, spzeros
 using UnPack: @unpack
+using ZipArchives: zip_open_filereader, zip_openentry # v1
 using unzip_jll: unzip
 
 """
