@@ -52,6 +52,10 @@ datadep"steelProfile_n1357m7q6"
   As of version 0.7.13, data is by default stored at
   `~/.julia/scratchspaces/124859b0-ceae-595e-8997-d05f6a7a8dfe/datadeps/`.
   Please refer to [DataDeps.jl]'s end-user documentation for further information.
+- How are the data sets being stored?
+
+  Currently, only `SteelProfile` is stored as plain MatrixMarket `.mtx` files.
+  All other data sets are stored as a single `.zip` archive containing several `.mtx` files.
 
 > [!WARNING]
 > The following releases have been data-breaking:
@@ -71,6 +75,7 @@ If a certain benchmark has not been added, yet, please open an issue.
 - `SteelProfile`:
   [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
   [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
+- `FenicsRail`: [FEniCS Rail](http://modelreduction.org/index.php/FEniCS_Rail)
 
 ## Acknowledgments
 

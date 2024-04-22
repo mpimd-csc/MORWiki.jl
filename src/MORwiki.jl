@@ -3,10 +3,12 @@
 module MORwiki
 
 using LinearAlgebra: I
+using Base.Threads: @spawn
 using Compat: argmin
 using DataDeps: DataDep, register, @datadep_str
 using DocStringExtensions: TYPEDEF
 using MatrixMarket: mmread
+using SparseArrays: sparse, spzeros
 using UnPack: @unpack
 using unzip_jll: unzip
 
@@ -62,8 +64,10 @@ end
 #   Return an appropriate sub-type of `StateSpaceRepresentation`.
 #
 include("oberwolfach/steelProfile.jl")
+include("misc/fenicsRail.jl")
 
 function __init__()
+    register_fenicsRail()
     register_steelProfile()
     nothing
 end

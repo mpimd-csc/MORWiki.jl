@@ -1,6 +1,6 @@
 # This file is part of MORwiki. License is MIT: https://spdx.org/licenses/MIT.html
 
-using MORwiki: MORwiki, SteelProfile, assemble
+using MORwiki: MORwiki, FenicsRail, SteelProfile, assemble
 using LinearAlgebra, SparseArrays, Test, UnPack
 
 @testset "MORwiki.jl" begin
@@ -28,4 +28,8 @@ using LinearAlgebra, SparseArrays, Test, UnPack
     @test D === false * I
     @test issymmetric(E)
     @test issymmetric(A)
+
+    @testset "Data consistency" begin
+        @test typeof(fos) === typeof(assemble(FenicsRail(371)))
+    end
 end
