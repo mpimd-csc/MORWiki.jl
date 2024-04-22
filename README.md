@@ -1,7 +1,16 @@
 # MOR Wiki
 
 Download data sets from [MOR Wiki].
+
+## Available Data Sets
+
+The following list associates the subtypes of `MORwiki.Benchmark` to their [MOR Wiki] entries.
 If a certain benchmark has not been added, yet, please open an issue.
+
+- `SteelProfile`:
+  [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
+  [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
+- `FenicsRail`: [FEniCS Rail](http://modelreduction.org/index.php/FEniCS_Rail)
 
 ## Installation
 
@@ -66,16 +75,6 @@ datadep"steelProfile_n1357m7q6"
 > Be assured that such changes will always be marked as a breaking release
 > according to the [Pkg.jl documentation](https://pkgdocs.julialang.org/v1.6/compatibility/#compat-pre-1.0).
 > Of course, not every API-breaking release is also data-breaking.
-
-## Available Data Sets
-
-The following list associates the subtypes of `MORwiki.Benchmark` to their [MOR Wiki] entries.
-If a certain benchmark has not been added, yet, please open an issue.
-
-- `SteelProfile`:
-  [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
-  [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
-- `FenicsRail`: [FEniCS Rail](http://modelreduction.org/index.php/FEniCS_Rail)
 
 ## Acknowledgments
 
