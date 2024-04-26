@@ -29,9 +29,6 @@ end
 $(DOC_steelProfile)
 
 Allowed dimensions: 371, 1357, 5177, 20209, 79841, 317377, 1265537
-
-!!! compat "MORWiki 0.1.4"
-    This data set requires MORWiki version 0.1.4 or later.
 """
 struct FenicsRail <: Benchmark
     dim::Int
