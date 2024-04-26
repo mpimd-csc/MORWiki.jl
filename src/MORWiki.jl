@@ -1,6 +1,6 @@
-# This file is part of MORwiki. License is MIT: https://spdx.org/licenses/MIT.html
+# This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
 
-module MORwiki
+module MORWiki
 
 using LinearAlgebra: I
 using Base.Threads: @spawn
@@ -23,7 +23,7 @@ function assemble end
 $(TYPEDEF)
 
 Lazy representation of a MOR Wiki benchmark.
-Check out `subtypes(MORwiki.Benchmark)` for all available benchmarks.
+Check out `subtypes(MORWiki.Benchmark)` for all available benchmarks.
 
 See also: [`assemble`](@ref)
 """
@@ -72,4 +72,4 @@ function __init__()
     nothing
 end
 
-end # module MORwiki
+end # module MORWiki

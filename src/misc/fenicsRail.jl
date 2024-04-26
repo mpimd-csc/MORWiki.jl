@@ -1,4 +1,4 @@
-# This file is part of MORwiki. License is MIT: https://spdx.org/licenses/MIT.html
+# This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
 
 const DIM_HASH_fenicsRail = [
     (371, "cdbce8c1791b8cdfe943d5e029e02159b345b48f90dec9530cdad2cdfe2113e1"),
@@ -30,8 +30,8 @@ $(DOC_steelProfile)
 
 Allowed dimensions: 371, 1357, 5177, 20209, 79841, 317377, 1265537
 
-!!! compat "MORwiki 0.1.4"
-    This data set requires MORwiki version 0.1.4 or later.
+!!! compat "MORWiki 0.1.4"
+    This data set requires MORWiki version 0.1.4 or later.
 """
 struct FenicsRail <: Benchmark
     dim::Int

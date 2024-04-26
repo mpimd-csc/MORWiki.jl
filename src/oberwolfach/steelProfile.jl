@@ -1,4 +1,4 @@
-# This file is part of MORwiki. License is MIT: https://spdx.org/licenses/MIT.html
+# This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
 
 const DIM_HASH_steelProfile = [
     (371, "ae4da7dba1b218f5f6f74c4e9194aa759ff8140f5a5d74247ee59e2447fd6093"),
@@ -38,8 +38,8 @@ $(DOC_steelProfile)
 
 Allowed dimensions: 371, 1357, 5177, 20209, 79841
 
-!!! compat "MORwiki 0.1.2"
-    Dimension 371 requires MORwiki version 0.1.2 or later.
+!!! compat "MORWiki 0.1.2"
+    Dimension 371 requires MORWiki version 0.1.2 or later.
 """
 struct SteelProfile <: Benchmark
     dim::Int

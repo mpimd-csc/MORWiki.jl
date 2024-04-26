@@ -1,4 +1,4 @@
-# This file is part of MORwiki. License is MIT: https://spdx.org/licenses/MIT.html
+# This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
 
 """
     FirstOrderSystem(; E=I, A, B, C, D=false*I)

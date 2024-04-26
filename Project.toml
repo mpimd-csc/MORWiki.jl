@@ -1,7 +1,7 @@
-name = "MORwiki"
-uuid = "0a23ce7c-1a84-4bdb-9995-3360bf4da96c"
+name = "MORWiki"
+uuid = "4add22a6-c4b7-49d8-833a-0e1707ec89d0"
 authors = ["Jonas Schulze <jschulze@mpi-magdeburg.mpg.de>"]
-version = "0.1.4"
+version = "0.2.0"
 
 [deps]
 Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"

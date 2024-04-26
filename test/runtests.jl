@@ -1,18 +1,18 @@
-# This file is part of MORwiki. License is MIT: https://spdx.org/licenses/MIT.html
+# This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
 
-using MORwiki: MORwiki, FenicsRail, SteelProfile, assemble
+using MORWiki: MORWiki, FenicsRail, SteelProfile, assemble
 using LinearAlgebra, SparseArrays, Test, UnPack
 
-@testset "MORwiki.jl" begin
+@testset "MORWiki.jl" begin
     @test_throws ArgumentError SteelProfile(300)
     @test_throws ArgumentError("Unsupported dimension 300. Did you mean 371?") SteelProfile(300)
     @test_throws ArgumentError("Unsupported dimension 1000. Did you mean 1357?") SteelProfile(1000)
 
     rail = SteelProfile(371)
-    @test rail isa MORwiki.Benchmark
+    @test rail isa MORWiki.Benchmark
 
     fos = assemble(rail)
-    @test fos isa MORwiki.FirstOrderSystem
+    @test fos isa MORWiki.FirstOrderSystem
     @test startswith(string(fos), r"^FirstOrderSystem:\n  [EA]: ")
 
     @unpack E, A, B, C, D = fos
