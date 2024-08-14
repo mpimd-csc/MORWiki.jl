@@ -10,8 +10,9 @@ using DocStringExtensions: TYPEDEF
 using MatrixMarket: mmread
 using SparseArrays: sparse, spzeros
 using UnPack: @unpack
-using ZipArchives: zip_open_filereader, zip_openentry # v1
+using ZipArchives: ZipReader, zip_openentry
 using unzip_jll: unzip
+using Mmap: mmap
 
 """
     assemble(::Benchmark)::StateSpaceRepresentation

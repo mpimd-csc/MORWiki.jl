@@ -45,7 +45,7 @@ function assemble(rail::FenicsRail)
     dir = @datadep_str dep
     zipfile = joinpath(dir, "fenics_rail_$dim.zip")
 
-    archive = zip_open_filereader(zipfile)
+    archive = ZipReader(mmap(open(zipfile; read=true)))
     zip_mmread(file) = zip_openentry(mmread, archive, file)
     local E, A, B
     @sync begin
