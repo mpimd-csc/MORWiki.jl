@@ -3,6 +3,12 @@
 using MORWiki: MORWiki, FenicsRail, SteelProfile, assemble
 using LinearAlgebra, SparseArrays, Test, UnPack
 
+# Ensure test downloads succeed without user input:
+if !haskey(ENV, "DATADEPS_ALWAYS_ACCEPT")
+    @warn "Environment variable DATADEPS_ALWAYS_ACCEPT unset; setting to '1'"
+    ENV["DATADEPS_ALWAYS_ACCEPT"] = "1"
+end
+
 @testset "MORWiki.jl" begin
     @test_throws ArgumentError SteelProfile(300)
     @test_throws ArgumentError("Unsupported dimension 300. Did you mean 371?") SteelProfile(300)
