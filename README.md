@@ -7,6 +7,7 @@ Download data sets from [MOR Wiki].
 The following list associates the subtypes of `MORWiki.Benchmark` to their [MOR Wiki] entries.
 If a certain benchmark has not been added, yet, please open an issue.
 
+- `Chip` and `FlowMeter`: [Convective Thermal Flow](http://modelreduction.org/index.php/Convective_Thermal_Flow)
 - `SteelProfile`:
   [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
   [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
@@ -63,7 +64,7 @@ datadep"steelProfile_n1357m7q6"
   Please refer to [DataDeps.jl]'s end-user documentation for further information.
 - How are the data sets being stored?
 
-  Currently, only `SteelProfile` is stored as plain MatrixMarket `.mtx` files.
+  Currently, only `Chip`, `FlowMeter`, and `SteelProfile` are stored as plain MatrixMarket `.mtx` files.
   All other data sets are stored as a single `.zip` archive containing several `.mtx` files.
 
 > [!WARNING]

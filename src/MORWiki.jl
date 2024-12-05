@@ -13,6 +13,8 @@ using UnPack: @unpack
 using ZipArchives: ZipReader, zip_openentry
 using unzip_jll: unzip
 using Mmap: mmap
+using Tar: Tar
+using CodecZlib: GzipDecompressorStream
 
 """
     assemble(::Benchmark)::StateSpaceRepresentation
@@ -45,9 +47,9 @@ See also: [`assemble`](@ref)
 abstract type StateSpaceRepresentation end
 include("lti-fos.jl")
 
-function check_dimension(dim, DIM_HASH)
-    d = argmin(d -> abs(d - dim), d for (d, _) in DIM_HASH)
-    d == dim || throw(ArgumentError("Unsupported dimension $dim. Did you mean $d?"))
+function check_variant(description, variant, supported)
+    v = argmin(v -> abs(v - variant), supported)
+    v == variant || throw(ArgumentError("Unsupported $description $variant. Did you mean $v?"))
     nothing
 end
 
@@ -65,10 +67,12 @@ end
 # * Define method `assemble(::PREFIX)` which loads/assembles the actual system matrices.
 #   Return an appropriate sub-type of `StateSpaceRepresentation`.
 #
+include("oberwolfach/ctf.jl")
 include("oberwolfach/steelProfile.jl")
 include("misc/fenicsRail.jl")
 
 function __init__()
+    register_ctf()
     register_fenicsRail()
     register_steelProfile()
     nothing

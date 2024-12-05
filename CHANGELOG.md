@@ -1,3 +1,7 @@
+# v0.3.1
+
+- Add `Chip` and `FlowMeter` (https://github.com/mpimd-csc/MORWiki.jl/pull/3)
+
 # v0.3.0
 
 - Breaking: Update ZipArchives to version 2 (https://github.com/mpimd-csc/MORWiki.jl/pull/2)
