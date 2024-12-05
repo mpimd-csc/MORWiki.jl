@@ -34,7 +34,8 @@ struct FenicsRail <: Benchmark
     dim::Int
 
     function FenicsRail(dim::Int)
-        check_dimension(dim, DIM_HASH_fenicsRail)
+        supported = first.(DIM_HASH_fenicsRail)
+        check_variant("dimension", dim, supported)
         new(dim)
     end
 end

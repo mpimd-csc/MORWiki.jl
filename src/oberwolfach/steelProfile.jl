@@ -42,7 +42,8 @@ struct SteelProfile <: Benchmark
     dim::Int
 
     function SteelProfile(dim::Int)
-        check_dimension(dim, DIM_HASH_steelProfile)
+        supported = first.(DIM_HASH_steelProfile)
+        check_variant("dimension", dim, supported)
         new(dim)
     end
 end
