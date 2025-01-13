@@ -36,7 +36,8 @@ function register_ctf()
         rm(tmp)
     end
 
-    for variants in values(VARIANTS_ctf), (; dep, suffix, hash) in values(variants)
+    for variants in values(VARIANTS_ctf), sub_variants in values(variants)
+        @unpack dep, suffix, hash = sub_variants
         file = "Convection-dim1e4-$suffix.tgz"
         datadep = DataDep(
             dep,
