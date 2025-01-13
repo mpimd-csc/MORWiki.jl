@@ -1,3 +1,7 @@
+# v0.3.2
+
+- Fix Julia 1.6 (https://github.com/mpimd-csc/MORWiki.jl/pull/5)
+
 # v0.3.1
 
 - Add `Chip` and `FlowMeter` (https://github.com/mpimd-csc/MORWiki.jl/pull/3)
