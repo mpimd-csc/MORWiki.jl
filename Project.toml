@@ -1,7 +1,7 @@
 name = "MORWiki"
 uuid = "4add22a6-c4b7-49d8-833a-0e1707ec89d0"
 authors = ["Jonas Schulze <jschulze@mpi-magdeburg.mpg.de> and contributors"]
-version = "0.3.1"
+version = "0.3.2"
 
 [deps]
 CodecZlib = "944b1d66-785c-5afd-91f1-9de20f533193"
@@ -24,7 +24,7 @@ DataDeps = "0.7.13"
 DocStringExtensions = "0.9"
 MatrixMarket = "0.5"
 SparseArrays = "1"
-Tar = "1.10.0"
+Tar = "1.9"
 UnPack = "1"
 ZipArchives = "2"
 julia = "1.6"
