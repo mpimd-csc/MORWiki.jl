@@ -1,3 +1,7 @@
+# v0.3.3
+
+- Fix `Chip` and `FlowMeter` when their type names would be qualified (https://github.com/mpimd-csc/MORWiki.jl/pull/6)
+
 # v0.3.2
 
 - Fix Julia 1.6 (https://github.com/mpimd-csc/MORWiki.jl/pull/5)
