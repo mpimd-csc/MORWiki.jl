@@ -93,7 +93,7 @@ struct FlowMeter <: ConvectiveThermalFlow
 end
 
 function assemble(ctf::ConvectiveThermalFlow)
-    kind = string(typeof(ctf))
+    kind = string(nameof(typeof(ctf)))
     @unpack dep, suffix = VARIANTS_ctf[kind][ctf.velocity]
     dir = @datadep_str dep
 

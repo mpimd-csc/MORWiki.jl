@@ -38,4 +38,10 @@ end
     @testset "Data consistency" begin
         @test typeof(fos) === typeof(assemble(FenicsRail(371)))
     end
+
+    @testset "Qualified benchmark names" begin
+        @assert !@isdefined(Chip)
+        fos = assemble(MORWiki.Chip(0.0))
+        @test fos isa MORWiki.FirstOrderSystem
+    end
 end
