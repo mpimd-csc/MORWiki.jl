@@ -1,3 +1,5 @@
+.vscode
+coverage
 tmp
 
 Manifest.toml
