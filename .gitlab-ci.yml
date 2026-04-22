@@ -18,3 +18,14 @@ include:
         - "1.6"
         - "1.10"
         - "1"
+
+# This should be run in a scheduled, e.g., monthly pipeline only.
+# It must not be run on every commit!
+download_all:
+  image: julia:1.10
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - when: manual
+  script:
+    - julia --project=. -e 'import Pkg; Pkg.instantiate()'
+    - julia --project=. test/download_all.jl

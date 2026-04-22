@@ -104,3 +104,6 @@ function assemble(ctf::ConvectiveThermalFlow)
 
     FirstOrderSystem(; E, A, B, C)
 end
+
+variants(::Type{Chip}) = (0.0, 0.1)
+variants(::Type{FlowMeter}) = (0.0, 0.5)

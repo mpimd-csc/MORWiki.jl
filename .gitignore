@@ -1,6 +1,7 @@
 .vscode
 coverage
 tmp
+test/data
 
 Manifest.toml
 *.swp

@@ -4,6 +4,7 @@
   `Filter2D`, `Filter3D`, `GasSensor`, `NonlinearHeatTransfer`,
   `MicropyrosThruster`, `PeekInductor`, `RclCircuitEquations`, and
   `SupersonicEngineInlet`
+- Add `instances(T::Type)` to collect all benchmarks of type `T <: Benchmark`
 
 # v0.3.3
 

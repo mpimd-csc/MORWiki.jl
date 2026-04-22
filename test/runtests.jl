@@ -1,5 +1,6 @@
 # This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
 
+using InteractiveUtils: subtypes
 using MORWiki: MORWiki, assemble, instances
 using MORWiki: FenicsRail, SteelProfile # check data consistency
 using MORWiki: PeekInductor, NonlinearHeatTransfer, RclCircuitEquations, MicropyrosThruster # varying number of variants and arguments
@@ -59,5 +60,16 @@ end
         docstring = string(@doc MicropyrosThruster)
         @test issetequal(variants, [:T2DAH, :T2DAL, :T3DH, :T3DL])
         @test contains(docstring, "T2DAH, T2DAL, T3DH, T3DL")
+    end
+
+    @testset "Instances" begin
+        benchmarks = instances()
+        @test benchmarks isa Vector{MORWiki.Benchmark}
+        @test length(benchmarks) == 28
+        @testset "$T" for T in subtypes(MORWiki.Benchmark)
+            benchmarks = instances(T)
+            @test benchmarks isa Vector{MORWiki.Benchmark}
+            @test all(b -> b isa T, benchmarks)
+        end
     end
 end

@@ -8,6 +8,7 @@ using Compat: argmin
 using DataDeps: DataDep, register, @datadep_str
 using DelimitedFiles: readdlm
 using DocStringExtensions: TYPEDEF
+using InteractiveUtils: subtypes
 using MatrixMarket: mmread
 using SparseArrays: sparse, spzeros
 using UnPack: @unpack
@@ -74,6 +75,44 @@ function assemble(benchmark)
     C = read(mat, "C")
     D = "D" in keys(mat) ? read(mat, "D") : false * I
     FirstOrderSystem(; E, A, B, C, D)
+end
+
+"""
+    instances([T])::Vector{Benchmark}
+
+Return all (natively allowed) instances of type `T` where `T <: Benchmark`.
+If `T` is not given, use [`Benchmark`](@ref).
+
+```jldoctest
+julia> using MORWiki: ConvectiveThermalFlow, instances
+
+julia> instances(ConvectiveThermalFlow)
+4-element Vector{MORWiki.Benchmark}:
+ MORWiki.Chip(0.0)
+ MORWiki.Chip(0.1)
+ MORWiki.FlowMeter(0.0)
+ MORWiki.FlowMeter(0.5)
+
+```
+"""
+instances() = instances(Benchmark)
+
+function instances(T::Type)
+    benchmarks = Benchmark[]
+    if isconcretetype(T)
+        if (vs = variants(T)) == nothing
+            push!(benchmarks, T())
+        else
+            for v in vs
+                push!(benchmarks, T(v))
+            end
+        end
+    else
+        for S in subtypes(T)
+            append!(benchmarks, instances(S))
+        end
+    end
+    return benchmarks
 end
 
 function check_variant(description, variant, supported)
