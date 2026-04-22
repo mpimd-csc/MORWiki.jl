@@ -8,9 +8,16 @@ The following list associates the subtypes of `MORWiki.Benchmark` to their [MOR 
 If a certain benchmark has not been added, yet, please open an issue.
 
 - `Chip` and `FlowMeter`: [Convective Thermal Flow](http://modelreduction.org/index.php/Convective_Thermal_Flow)
+- `Filter2D` and `Filter3D`: [Tunable Optical Filter](https://modelreduction.org/morwiki/index.php/Tunable_Optical_Filter)
+- `GasSensor`: [Gas Sensor](https://modelreduction.org/morwiki/index.php/Gas_Sensor)
+- `MicropyrosThruster`: [Micropyros Thruster](https://modelreduction.org/morwiki/index.php/Micropyros_Thruster)
+- `NonlinearHeatTransfer`: [Nonlinear Heat Transfer](https://modelreduction.org/morwiki/index.php/Nonlinear_Heat_Transfer)
+- `PeekInductor`: [Peek Inductor](https://modelreduction.org/morwiki/index.php/Peek_Inductor)
+- `RclCircuitEquations`: [RCL Circuit Equations](https://modelreduction.org/morwiki/index.php/RCL_Circuit_Equations)
 - `SteelProfile`:
   [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
   [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
+- `SupersonicEngineInlet`: [Supersonic Engine Inlet](https://modelreduction.org/morwiki/index.php/Supersonic_Engine_Inlet)
 - `FenicsRail`: [FEniCS Rail](http://modelreduction.org/index.php/FEniCS_Rail)
 
 ## Installation
@@ -64,8 +71,10 @@ datadep"steelProfile_n1357m7q6"
   Please refer to [DataDeps.jl]'s end-user documentation for further information.
 - How are the data sets being stored?
 
-  Currently, only `Chip`, `FlowMeter`, and `SteelProfile` are stored as plain MatrixMarket `.mtx` files.
-  All other data sets are stored as a single `.zip` archive containing several `.mtx` files.
+  Currently, `Chip`, `FlowMeter`, and `SteelProfile` are stored as plain MatrixMarket `.mtx` files.
+  `FenicsRail` is stored as a single `.zip` archive containing several `.mtx` files.
+  The remaining data sets are stored as MAT v5 files;
+  which we plan to replace by MAT v7.3 files ... eventually.
 
 > [!WARNING]
 > The following releases have been data-breaking:

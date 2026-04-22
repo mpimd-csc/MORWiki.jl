@@ -75,3 +75,5 @@ function assemble(rail::FenicsRail)
 
     FirstOrderSystem(; E, A, B, C)
 end
+
+variants(::Type{FenicsRail}) = first.(DIM_HASH_fenicsRail)

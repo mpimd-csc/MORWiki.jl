@@ -1,3 +1,11 @@
+# v0.3.4
+
+- Add remaining LTI-FOS from Oberwolfach benchmark collection:
+  `Filter2D`, `Filter3D`, `GasSensor`, `NonlinearHeatTransfer`,
+  `MicropyrosThruster`, `PeekInductor`, `RclCircuitEquations`, and
+  `SupersonicEngineInlet`
+- Add `instances(T::Type)` to collect all benchmarks of type `T <: Benchmark`
+
 # v0.3.3
 
 - Fix `Chip` and `FlowMeter` when their type names would be qualified (https://github.com/mpimd-csc/MORWiki.jl/pull/6)

@@ -63,3 +63,5 @@ function assemble(rail::SteelProfile)
 
     FirstOrderSystem(; E, A, B, C)
 end
+
+variants(::Type{SteelProfile}) = first.(DIM_HASH_steelProfile)

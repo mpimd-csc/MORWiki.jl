@@ -1,6 +1,9 @@
 # This file is part of MORWiki. License is MIT: https://spdx.org/licenses/MIT.html
 
-using MORWiki: MORWiki, FenicsRail, SteelProfile, assemble
+using InteractiveUtils: subtypes
+using MORWiki: MORWiki, assemble, instances
+using MORWiki: FenicsRail, SteelProfile # check data consistency
+using MORWiki: PeekInductor, NonlinearHeatTransfer, RclCircuitEquations, MicropyrosThruster # varying number of variants and arguments
 using LinearAlgebra, SparseArrays, Test, UnPack
 
 # Ensure test downloads succeed without user input:
@@ -13,6 +16,9 @@ end
     @test_throws ArgumentError SteelProfile(300)
     @test_throws ArgumentError("Unsupported dimension 300. Did you mean 371?") SteelProfile(300)
     @test_throws ArgumentError("Unsupported dimension 1000. Did you mean 1357?") SteelProfile(1000)
+    @test_throws ArgumentError("Unsupported variant foo. Did you mean linear?") NonlinearHeatTransfer(:foo)
+    @test_throws ArgumentError("Unsupported variant foo. Did you mean package or peec?") RclCircuitEquations(:foo)
+    @test_throws ArgumentError("Unsupported variant foo. Did you mean T2DAH, T2DAL, T3DH, or T3DL?") MicropyrosThruster(:foo)
 
     rail = SteelProfile(371)
     @test rail isa MORWiki.Benchmark
@@ -35,6 +41,10 @@ end
     @test issymmetric(E)
     @test issymmetric(A)
 
+    # Just to improve code coverage:
+    @test assemble(PeekInductor()) isa MORWiki.FirstOrderSystem
+    @test assemble(NonlinearHeatTransfer(:linear)) isa MORWiki.FirstOrderSystem
+
     @testset "Data consistency" begin
         @test typeof(fos) === typeof(assemble(FenicsRail(371)))
     end
@@ -43,5 +53,23 @@ end
         @assert !@isdefined(Chip)
         fos = assemble(MORWiki.Chip(0.0))
         @test fos isa MORWiki.FirstOrderSystem
+    end
+
+    @testset "Documented variants" begin
+        variants = MORWiki.variants(MicropyrosThruster)
+        docstring = string(@doc MicropyrosThruster)
+        @test issetequal(variants, [:T2DAH, :T2DAL, :T3DH, :T3DL])
+        @test contains(docstring, "T2DAH, T2DAL, T3DH, T3DL")
+    end
+
+    @testset "Instances" begin
+        benchmarks = instances()
+        @test benchmarks isa Vector{MORWiki.Benchmark}
+        @test length(benchmarks) == 28
+        @testset "$T" for T in subtypes(MORWiki.Benchmark)
+            benchmarks = instances(T)
+            @test benchmarks isa Vector{MORWiki.Benchmark}
+            @test all(b -> b isa T, benchmarks)
+        end
     end
 end
