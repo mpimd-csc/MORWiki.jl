@@ -11,7 +11,7 @@ no data will be ever be downloaded.
 !!! compat "MORWiki v0.3.5"
     This data set requires MORWiki version 0.3.5 or later.
 """
-@kwdef struct PenzlFOM <: Benchmark
+Base.@kwdef struct PenzlFOM <: Benchmark
     p::Float64 = 100.0
 end
 
