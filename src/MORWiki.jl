@@ -183,14 +183,11 @@ variants(_::String) = nothing # no arguments passed to constructor
 # Consider breaking above rules.
 #
 include("oberwolfach/ctf.jl")
-include("oberwolfach/gasSensor.jl")
 include("oberwolfach/micropyrosThruster.jl")
 include("oberwolfach/nonLinearHeatTransfer.jl")
-include("oberwolfach/peekInductor.jl")
 include("oberwolfach/rclCircuitEquations.jl")
 include("oberwolfach/steelProfile.jl")
-include("oberwolfach/supersonicEngineInlet.jl")
-include("oberwolfach/tunableOpticalFilter.jl")
+include("oberwolfach/oberwolfach.jl")
 include("misc/fenicsRail.jl")
 include("slicot/iss.jl")
 include("slicot/mna.jl")
