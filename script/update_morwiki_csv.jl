@@ -11,10 +11,15 @@ upstream = joinpath(@__DIR__, "upstream.csv")
 download("$base_url/examples.csv", upstream)
 
 df_raw = CSV.read(upstream, DataFrame)
+categories = [
+    "oberwolfach",
+    "slicot",
+]
 subset!(
     df_raw,
     :systemClass => ByRow(==("LTI-FOS")),
-    :category => ByRow(==("oberwolfach")),
+    :category => ByRow(in(categories)),
+    :id => ByRow(!startswith("penzlFOM")), # curated locally
     :id => ByRow(!startswith("steelProfile")), # curated locally
     :id => ByRow(!startswith("ctf")), # curated locally
 )

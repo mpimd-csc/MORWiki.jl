@@ -121,7 +121,7 @@ function check_variant(description, variant, supported)
     nothing
 end
 
-function check_variant(description, variant::Symbol, supported)
+function check_variant(description, variant::Union{String, Symbol}, supported)
     # Simply list all variants here,
     # since we don't have string similarity measures (yet).
     if !(variant in supported)
@@ -192,6 +192,10 @@ include("oberwolfach/steelProfile.jl")
 include("oberwolfach/supersonicEngineInlet.jl")
 include("oberwolfach/tunableOpticalFilter.jl")
 include("misc/fenicsRail.jl")
+include("slicot/iss.jl")
+include("slicot/mna.jl")
+include("slicot/penzlFOM.jl")
+include("slicot/slicot.jl")
 
 function __init__()
     # Register standardized benchmarks in bulk:

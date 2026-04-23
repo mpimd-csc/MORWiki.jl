@@ -1,3 +1,10 @@
+# v0.3.5
+
+- Add SLICOT benchmark examples:
+  `BuildingModel`, `CDPlayer`, `ClampedBeam`, `ConvectionReaction`,
+  `EarthAtmosphere`, `HeatEquation`, `ISS`, `MNA`, `OrrSommerfeld`,
+  `PenzlFOM`, `PeecModel`, `RandomSlicot`, `TransmissionLines`
+
 # v0.3.4
 
 - Add remaining LTI-FOS from Oberwolfach benchmark collection:

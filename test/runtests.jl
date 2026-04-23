@@ -4,6 +4,7 @@ using InteractiveUtils: subtypes
 using MORWiki: MORWiki, assemble, instances
 using MORWiki: FenicsRail, SteelProfile # check data consistency
 using MORWiki: PeekInductor, NonlinearHeatTransfer, RclCircuitEquations, MicropyrosThruster # varying number of variants and arguments
+using MORWiki: MNA, PenzlFOM # non-standard constructors or assembly
 using LinearAlgebra, SparseArrays, Test, UnPack
 
 # Ensure test downloads succeed without user input:
@@ -16,6 +17,7 @@ end
     @test_throws ArgumentError SteelProfile(300)
     @test_throws ArgumentError("Unsupported dimension 300. Did you mean 371?") SteelProfile(300)
     @test_throws ArgumentError("Unsupported dimension 1000. Did you mean 1357?") SteelProfile(1000)
+    @test_throws ArgumentError("Unsupported dimension 1000. Did you mean 980?") MNA(1000)
     @test_throws ArgumentError("Unsupported variant foo. Did you mean linear?") NonlinearHeatTransfer(:foo)
     @test_throws ArgumentError("Unsupported variant foo. Did you mean package or peec?") RclCircuitEquations(:foo)
     @test_throws ArgumentError("Unsupported variant foo. Did you mean T2DAH, T2DAL, T3DH, or T3DL?") MicropyrosThruster(:foo)
@@ -44,6 +46,8 @@ end
     # Just to improve code coverage:
     @test assemble(PeekInductor()) isa MORWiki.FirstOrderSystem
     @test assemble(NonlinearHeatTransfer(:linear)) isa MORWiki.FirstOrderSystem
+    @test assemble(PenzlFOM()) isa MORWiki.FirstOrderSystem
+    @test MNA(980) == MNA("4")
 
     @testset "Data consistency" begin
         @test typeof(fos) === typeof(assemble(FenicsRail(371)))
@@ -65,7 +69,7 @@ end
     @testset "Instances" begin
         benchmarks = instances()
         @test benchmarks isa Vector{MORWiki.Benchmark}
-        @test length(benchmarks) == 28
+        @test length(benchmarks) == 46
         @testset "$T" for T in subtypes(MORWiki.Benchmark)
             benchmarks = instances(T)
             @test benchmarks isa Vector{MORWiki.Benchmark}
