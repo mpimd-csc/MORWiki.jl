@@ -22,7 +22,7 @@ include:
 # This should be run in a scheduled, e.g., monthly pipeline only.
 # It must not be run on every commit!
 download_all:
-  image: julia:1.10
+  image: julia:1.6
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
     - when: manual
