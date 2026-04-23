@@ -1,4 +1,4 @@
-# MOR Wiki
+# MORWiki.jl
 
 Download data sets from [MOR Wiki].
 
@@ -55,6 +55,7 @@ datadep"steelProfile_n1357m7q6"
 
   Currently, `Chip`, `FlowMeter`, and `SteelProfile` are stored as plain MatrixMarket `.mtx` files.
   `FenicsRail` is stored as a single `.zip` archive containing several `.mtx` files.
+  `PenzlFOM` is assembled from scratch, i.e., stores no data at all.
   The remaining data sets are stored as MAT v5 files;
   which we plan to replace by MAT v7.3 files ... eventually.
 
