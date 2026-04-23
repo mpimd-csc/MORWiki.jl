@@ -48,7 +48,7 @@ include("lti-fos.jl")
 
 Return assembled system matrices.
 """
-function assemble(benchmark)
+function assemble(benchmark::Benchmark)
     # Select datadep string:
     T = typeof(benchmark)
     if fieldcount(T) == 0
