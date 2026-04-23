@@ -66,7 +66,7 @@ function assemble(benchmark::Benchmark)
     mat = matopen(fname)
 
     # What version of MAT file is this?
-    @debug "assemble($benchmark)" typeof(mat)
+    @debug "Assembling $benchmark from $(typeof(mat))"
 
     # Load system matrices:
     E = "E" in keys(mat) ? read(mat, "E") : I
