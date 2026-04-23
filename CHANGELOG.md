@@ -1,3 +1,7 @@
+# v0.3.6
+
+- Fix Julia 1.6 (https://github.com/mpimd-csc/MORWiki.jl/pull/11)
+
 # v0.3.5
 
 - Add SLICOT benchmark examples:
