@@ -48,7 +48,7 @@ include("lti-fos.jl")
 
 Return assembled system matrices.
 """
-function assemble(benchmark)
+function assemble(benchmark::Benchmark)
     # Select datadep string:
     T = typeof(benchmark)
     if fieldcount(T) == 0
@@ -66,7 +66,7 @@ function assemble(benchmark)
     mat = matopen(fname)
 
     # What version of MAT file is this?
-    @debug "assemble($benchmark)" typeof(mat)
+    @debug "Assembling $benchmark from $(typeof(mat))"
 
     # Load system matrices:
     E = "E" in keys(mat) ? read(mat, "E") : I
@@ -121,7 +121,7 @@ function check_variant(description, variant, supported)
     nothing
 end
 
-function check_variant(description, variant::Symbol, supported)
+function check_variant(description, variant::Union{String, Symbol}, supported)
     # Simply list all variants here,
     # since we don't have string similarity measures (yet).
     if !(variant in supported)
@@ -183,15 +183,16 @@ variants(_::String) = nothing # no arguments passed to constructor
 # Consider breaking above rules.
 #
 include("oberwolfach/ctf.jl")
-include("oberwolfach/gasSensor.jl")
 include("oberwolfach/micropyrosThruster.jl")
 include("oberwolfach/nonLinearHeatTransfer.jl")
-include("oberwolfach/peekInductor.jl")
 include("oberwolfach/rclCircuitEquations.jl")
 include("oberwolfach/steelProfile.jl")
-include("oberwolfach/supersonicEngineInlet.jl")
-include("oberwolfach/tunableOpticalFilter.jl")
+include("oberwolfach/oberwolfach.jl")
 include("misc/fenicsRail.jl")
+include("slicot/iss.jl")
+include("slicot/mna.jl")
+include("slicot/penzlFOM.jl")
+include("slicot/slicot.jl")
 
 function __init__()
     # Register standardized benchmarks in bulk:

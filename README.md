@@ -2,24 +2,6 @@
 
 Download data sets from [MOR Wiki].
 
-## Available Data Sets
-
-The following list associates the subtypes of `MORWiki.Benchmark` to their [MOR Wiki] entries.
-If a certain benchmark has not been added, yet, please open an issue.
-
-- `Chip` and `FlowMeter`: [Convective Thermal Flow](http://modelreduction.org/index.php/Convective_Thermal_Flow)
-- `Filter2D` and `Filter3D`: [Tunable Optical Filter](https://modelreduction.org/morwiki/index.php/Tunable_Optical_Filter)
-- `GasSensor`: [Gas Sensor](https://modelreduction.org/morwiki/index.php/Gas_Sensor)
-- `MicropyrosThruster`: [Micropyros Thruster](https://modelreduction.org/morwiki/index.php/Micropyros_Thruster)
-- `NonlinearHeatTransfer`: [Nonlinear Heat Transfer](https://modelreduction.org/morwiki/index.php/Nonlinear_Heat_Transfer)
-- `PeekInductor`: [Peek Inductor](https://modelreduction.org/morwiki/index.php/Peek_Inductor)
-- `RclCircuitEquations`: [RCL Circuit Equations](https://modelreduction.org/morwiki/index.php/RCL_Circuit_Equations)
-- `SteelProfile`:
-  [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
-  [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
-- `SupersonicEngineInlet`: [Supersonic Engine Inlet](https://modelreduction.org/morwiki/index.php/Supersonic_Engine_Inlet)
-- `FenicsRail`: [FEniCS Rail](http://modelreduction.org/index.php/FEniCS_Rail)
-
 ## Installation
 
 ```julia
@@ -85,6 +67,45 @@ datadep"steelProfile_n1357m7q6"
 > Be assured that such changes will always be marked as a breaking release
 > according to the [Pkg.jl documentation](https://pkgdocs.julialang.org/v1.6/compatibility/#compat-pre-1.0).
 > Of course, not every API-breaking release is also data-breaking.
+
+## Available Data Sets
+
+The following list associates the subtypes of `MORWiki.Benchmark` to their [MOR Wiki] entries.
+If a certain benchmark has not been added, yet, please open an issue.
+
+### Oberwolfach Benchmark Collection
+
+- `Chip` and `FlowMeter`: [Convective Thermal Flow](http://modelreduction.org/index.php/Convective_Thermal_Flow)
+- `Filter2D` and `Filter3D`: [Tunable Optical Filter](https://modelreduction.org/morwiki/index.php/Tunable_Optical_Filter)
+- `GasSensor`: [Gas Sensor](https://modelreduction.org/morwiki/index.php/Gas_Sensor)
+- `MicropyrosThruster`: [Micropyros Thruster](https://modelreduction.org/morwiki/index.php/Micropyros_Thruster)
+- `NonlinearHeatTransfer`: [Nonlinear Heat Transfer](https://modelreduction.org/morwiki/index.php/Nonlinear_Heat_Transfer)
+- `PeekInductor`: [Peek Inductor](https://modelreduction.org/morwiki/index.php/Peek_Inductor)
+- `RclCircuitEquations`: [RCL Circuit Equations](https://modelreduction.org/morwiki/index.php/RCL_Circuit_Equations)
+- `SteelProfile`:
+  [Oberwolfach Steel Profile](http://modelreduction.org/index.php/Steel_Profile) and
+  [ALBERTA Rail 371](http://modelreduction.org/index.php/ALBERTA_Rail_371)
+- `SupersonicEngineInlet`: [Supersonic Engine Inlet](https://modelreduction.org/morwiki/index.php/Supersonic_Engine_Inlet)
+
+### SLICOT Benchmark Collection
+
+- `BuildingModel`: [Building Model](https://modelreduction.org/morwiki/index.php/Building_Model)
+- `CDPlayer`: [CD Player](https://modelreduction.org/morwiki/index.php/CD_Player)
+- `ClampedBeam`: [Clamped Beam](https://modelreduction.org/morwiki/index.php/Clamped_Beam)
+- `ConvectionReaction`: [Convection Reaction](https://modelreduction.org/morwiki/index.php/Partial_Differential_Equation)
+- `EarthAtmosphere`: [Earth Atmosphere](https://modelreduction.org/morwiki/index.php/Earth_Atmosphere)
+- `HeatEquation`: [Heat Equation](https://modelreduction.org/morwiki/index.php/Heat_Equation)
+- `ISS`: [International Space Station](https://modelreduction.org/morwiki/index.php/International_Space_Station)
+- `MNA`: [Modified Nodal Analysis](https://modelreduction.org/morwiki/index.php/Modified_Nodal_Analysis)
+- `OrrSommerfeld`: [Orr-Sommerfeld](https://modelreduction.org/morwiki/index.php/Orr-Sommerfeld)
+- `PenzlFOM`: [Penzl's FOM](https://modelreduction.org/morwiki/Penzl%27s_FOM)
+- `PeecModel`: [PEEC Model (SLICOT)](https://modelreduction.org/morwiki/index.php/PEEC_Model_(SLICOT))
+- `RandomSlicot`: [Random (SLICOT)](https://modelreduction.org/morwiki/index.php/Random)
+- `TransmissionLines` [Transmission Lines (SLICOT)](https://modelreduction.org/morwiki/index.php/Transmission_Lines_(SLICOT))
+
+### Misc
+
+- `FenicsRail`: [FEniCS Rail](http://modelreduction.org/index.php/FEniCS_Rail)
 
 ## Acknowledgments
 
