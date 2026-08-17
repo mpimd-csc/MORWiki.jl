@@ -1,6 +1,7 @@
 # v0.3.6
 
 - Fix Julia 1.6 (https://github.com/mpimd-csc/MORWiki.jl/pull/11)
+- Update compat bound of `DataDeps` (https://github.com/mpimd-csc/MORWiki.jl/pull/12)
 
 # v0.3.5
 
