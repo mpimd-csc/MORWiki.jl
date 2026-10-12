@@ -20,9 +20,11 @@ for benchmark in benchmarks
         @info "$benchmark..."
         sys = assemble(benchmark)
         sys isa FirstOrderSystem || error("Assembly failed")
-    catch
+    catch err
         global nfailed += 1
         @error "Something went wrong"
+        showerror(stderr, err)
+        println(stderr)
         # Continue testing next example; do not rethrow.
     end
 end
