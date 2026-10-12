@@ -26,6 +26,7 @@ download_all:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
     - when: manual
+      allow_failure: true
   script:
     - julia --project=. -e 'import Pkg; Pkg.instantiate()'
     - julia --project=. test/download_all.jl
