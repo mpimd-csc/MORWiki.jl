@@ -1,0 +1,21 @@
+name: Touch cache
+
+# GitHub evicts caches that have not been accessed for 7 days.
+# Restore the data sets regularly such that CI does not need to download them again.
+# The cache is created by CI.yml only.
+on:
+  schedule:
+    - cron: '0 3 * * 1,4' # twice per week
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  touch_cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/datadeps
+        with:
+          create: false
