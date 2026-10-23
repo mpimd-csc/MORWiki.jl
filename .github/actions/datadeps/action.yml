@@ -1,0 +1,45 @@
+name: Restore data sets
+description: >
+  Point DataDeps.jl to ~/datadeps and cache that directory.
+  The data sets do not depend on the Julia version; the cache is shared across all jobs.
+
+inputs:
+  create:
+    description: Whether to save the cache at the end of the job if there was no exact key match
+    default: 'true'
+
+outputs:
+  cache-hit:
+    description: Whether the cache has been restored from an exact key match
+    value: ${{ steps.cache.outputs.cache-hit || steps.restore.outputs.cache-hit }}
+
+runs:
+  using: composite
+  steps:
+    # By default, DataDeps.jl stores the data in its scratch space, which is part of the
+    # julia-actions/cache cache, i.e., the data would be cached once per Julia version.
+    # DataDeps.jl only saves to existing directories, and does not expand `~`.
+    - shell: bash
+      run: |
+        mkdir -p "$HOME/datadeps"
+        echo "DATADEPS_LOAD_PATH=$HOME/datadeps" >> "$GITHUB_ENV"
+        echo "DATADEPS_NO_STANDARD_LOAD_PATH=1" >> "$GITHUB_ENV"
+        echo "DATADEPS_ALWAYS_ACCEPT=1" >> "$GITHUB_ENV"
+    # Keep both steps in sync:
+    - id: cache
+      if: inputs.create == 'true'
+      uses: actions/cache@v4
+      with:
+        path: ~/datadeps
+        # Bump the version whenever the layout changes, such that stale caches are not restored:
+        key: datadeps-v2-${{ runner.os }}-${{ hashFiles('src/**') }}
+        restore-keys: datadeps-v2-${{ runner.os }}-
+    - id: restore
+      if: inputs.create != 'true'
+      uses: actions/cache/restore@v4
+      with:
+        path: ~/datadeps
+        key: datadeps-v2-${{ runner.os }}-${{ hashFiles('src/**') }}
+        restore-keys: datadeps-v2-${{ runner.os }}-
+    - shell: bash
+      run: du -sh ~/datadeps/* || true
