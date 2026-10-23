@@ -1,6 +1,7 @@
 # v0.3.7
 
-- Fix stdlib compat annotations for Julia 1.6 (b80a90d)
+- Fix stdlib compat annotations for Julia 1.6 (b80a90df and ca205804)
+- Update dependency versions
 
 # v0.3.6
 

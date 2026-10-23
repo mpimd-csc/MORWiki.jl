@@ -112,8 +112,8 @@ If a certain benchmark has not been added, yet, please open an issue.
 
 I would like to thank the code reviewers:
 
-- Ashwin Nayak (https://github.com/ashwin-nayak)
-- Jens Saak (https://github.com/drittelhacker)
+- Ashwin Nayak (https://github.com/ashwin-nayak) reviewed version 0.1.3
+- Jens Saak (https://github.com/drittelhacker) reviewed version 0.1.3
 
 ## License
 
