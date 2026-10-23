@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags: ['*']
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  # Cancel outdated runs of the same PR or branch:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Julia ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - '1.6'
+          - '1.10'
+          - '1'
+    env:
+      DATADEPS_ALWAYS_ACCEPT: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: ${{ matrix.version }}
+      - uses: julia-actions/cache@v2
+      # The data sets do not depend on the Julia version; share them across the matrix:
+      - uses: actions/cache@v4
+        with:
+          path: ~/.julia/datadeps
+          key: datadeps-${{ runner.os }}-${{ hashFiles('src/**') }}
+          restore-keys: datadeps-${{ runner.os }}-
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1
