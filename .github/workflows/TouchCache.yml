@@ -1,0 +1,37 @@
+name: Touch cache
+
+# GitHub evicts caches that have not been accessed for 7 days.
+# Restore the data sets regularly such that CI does not need to download them again.
+on:
+  schedule:
+    - cron: '0 3 * * 1,4' # twice per week
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  touch_cache:
+    runs-on: ubuntu-latest
+    env:
+      DATADEPS_ALWAYS_ACCEPT: '1'
+    steps:
+      - uses: actions/checkout@v4
+      # Keep in sync with CI.yml:
+      - id: datadeps
+        uses: actions/cache@v4
+        with:
+          path: ~/.julia/datadeps
+          key: datadeps-${{ runner.os }}-${{ hashFiles('src/**') }}
+          restore-keys: datadeps-${{ runner.os }}-
+      # Repopulate the cache if it has been evicted or is outdated:
+      - if: steps.datadeps.outputs.cache-hit != 'true'
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: '1'
+      - if: steps.datadeps.outputs.cache-hit != 'true'
+        uses: julia-actions/cache@v2
+      - if: steps.datadeps.outputs.cache-hit != 'true'
+        uses: julia-actions/julia-buildpkg@v1
+      - if: steps.datadeps.outputs.cache-hit != 'true'
+        uses: julia-actions/julia-runtest@v1

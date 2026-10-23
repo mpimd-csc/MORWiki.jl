@@ -1,0 +1,22 @@
+name: Download all
+
+# This must not be run on every commit!
+on:
+  schedule:
+    - cron: '0 3 1 * *' # monthly
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  download_all:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.6'
+      - uses: julia-actions/cache@v2
+      - run: julia --project=. -e 'import Pkg; Pkg.instantiate()'
+      - run: julia --project=. test/download_all.jl
